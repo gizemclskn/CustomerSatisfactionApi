@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.ML.Data;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,7 +9,10 @@ namespace CustomerSatisfaction.Core
 {
     public class CustomerReview
     {
-        public float Label { get; set; }  // Müşteri memnuniyeti puanı (etiket)
-        public string ReviewText { get; set; }  // Müşteri inceleme metni
+        [LoadColumn(0)]
+        public float Label { get; set; } // Hedef değişken (etiket)
+
+        [LoadColumn(1)]
+        public string ReviewText { get; set; } // Yorum metni
     }
 }
