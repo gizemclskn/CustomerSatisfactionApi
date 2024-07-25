@@ -2,6 +2,7 @@ using CustomerSatisfaction.Core;
 using CustomerSatisfaction.MLModels;
 using CustomerSatisfaction.Repositories;
 using CustomerSatisfaction.Services;
+using Microsoft.ML;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -12,9 +13,12 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-builder.Services.AddScoped<ICustomerReviewRepository, CustomerReviewRepository>();
-builder.Services.AddScoped<CustomerSatisfactionModel>();
+builder.Services.AddSingleton<MLContext>(); // Singleton because MLContext is thread-safe and should be reused
+builder.Services.AddScoped<CustomerSatisfactionModel>(); // Scoped or Singleton depending on how you want to use it
 builder.Services.AddScoped<CustomerReviewService>();
+
+// Configure repositories
+builder.Services.AddScoped<ICustomerReviewRepository, CustomerReviewRepository>();
 
 var app = builder.Build();
 
