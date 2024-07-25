@@ -6,4 +6,10 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\CustomerSatisfaction.Core\CustomerSatisfaction.Core.csproj" />
+    <ProjectReference Include="..\CustomerSatisfaction.MLModels\CustomerSatisfaction.MLModels.csproj" />
+    <ProjectReference Include="..\CustomerSatisfaction.Repositories\CustomerSatisfaction.Repositories.csproj" />
+  </ItemGroup>
+
 </Project>
